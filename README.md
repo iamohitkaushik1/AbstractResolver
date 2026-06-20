@@ -128,5 +128,12 @@ Abstract Finder/
 ├── requirements.txt      # Project requirements list
 ├── start.bat             # Auto-setup and launcher utility
 ├── fetching_abstract.py  # Standalone Colab/CLI script
+├── LICENSE              # MIT License terms
 └── README.md             # Project documentation
 ```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](file:///f:/Abstract%20Finder/LICENSE) file for details.
