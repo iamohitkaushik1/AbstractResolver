@@ -26,6 +26,9 @@ Developed collaboratively with **Antigravity** by **Mohit Kaushik**, this tool h
 
 If you are on Windows, simply double-click the setup batch script in the root directory:
 
+> [!TIP]
+> **No Command Line Knowledge Needed**: The `start.bat` script is designed specifically for users who are not familiar with running terminal commands. Double-clicking this file handles the entire setup (creating the virtual environment, installing libraries, and initiating the server) automatically without requiring you to copy-paste or execute any manual commands.
+
 1. Double-click the **`start.bat`** file.
 2. The script will automatically:
    - Verify Python is installed.
