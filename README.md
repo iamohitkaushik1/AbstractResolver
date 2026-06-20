@@ -103,7 +103,7 @@ python manage.py test
 ```
 
 ### 📁 Sample Input Files
-Inside the [test/](file:///f:/Abstract%20Finder/test) folder, we have included three pre-configured sample files representing each supported input format:
+Inside the [test/](/test) folder, we have included three pre-configured sample files representing each supported input format:
 1. **`OSS_ERA2_Pilot.csv`**: A Publish or Perish formatted CSV dataset containing metadata and partial citation fields.
 2. **`OSS_ERA2_Pilot.ris`**: A Research Information Systems (RIS) bibliographic dataset.
 3. **`pop_results.bibtex`**: A BibTeX citation reference library.
@@ -136,4 +136,4 @@ Abstract Finder/
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](file:///f:/Abstract%20Finder/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
