@@ -716,18 +716,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function triggerBlobDownload(format) {
+        if (!activeTaskId) return;
+        
+        fetch(`/api/download/${activeTaskId}/?format=${format}`)
+        .then(response => {
+            if (!response.ok) throw new Error("Failed to download file");
+            
+            // Try to extract filename from Content-Disposition header
+            const disposition = response.headers.get('Content-Disposition');
+            let filename = `resolved_${resolvedFilename.textContent.split('.')[0]}.${format}`;
+            if (disposition) {
+                const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                const matches = filenameRegex.exec(disposition);
+                if (matches != null && matches[1]) { 
+                    filename = matches[1].replace(/['"]/g, '');
+                }
+            }
+            return response.blob().then(blob => ({ blob, filename }));
+        })
+        .then(({ blob, filename }) => {
+            const blobUrl = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(blobUrl);
+        })
+        .catch(err => {
+            alert("Error downloading file: " + err.message);
+        });
+    }
+
     downloadBtn.addEventListener('click', () => {
         if (downloadDropdownMenu) downloadDropdownMenu.classList.add('hidden');
-        if (!activeTaskId) return;
-        window.location.href = `/api/download/${activeTaskId}/?format=bib`;
+        triggerBlobDownload('bib');
     });
 
     const downloadCsvBtn = document.getElementById('download-csv-btn');
     if (downloadCsvBtn) {
         downloadCsvBtn.addEventListener('click', () => {
             if (downloadDropdownMenu) downloadDropdownMenu.classList.add('hidden');
-            if (!activeTaskId) return;
-            window.location.href = `/api/download/${activeTaskId}/?format=csv`;
+            triggerBlobDownload('csv');
         });
     }
 
@@ -735,8 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (downloadRisBtn) {
         downloadRisBtn.addEventListener('click', () => {
             if (downloadDropdownMenu) downloadDropdownMenu.classList.add('hidden');
-            if (!activeTaskId) return;
-            window.location.href = `/api/download/${activeTaskId}/?format=ris`;
+            triggerBlobDownload('ris');
         });
     }
 
