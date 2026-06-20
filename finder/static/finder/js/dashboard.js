@@ -699,7 +699,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // DOWNLOAD & RESTART ACTIONS
     // ==========================================
+    const downloadDropdownBtn = document.getElementById('download-dropdown-btn');
+    const downloadDropdownMenu = document.getElementById('download-dropdown-menu');
+
+    if (downloadDropdownBtn && downloadDropdownMenu) {
+        downloadDropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            downloadDropdownMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!downloadDropdownMenu.classList.contains('hidden') && !downloadDropdownMenu.contains(e.target)) {
+                downloadDropdownMenu.classList.add('hidden');
+            }
+        });
+    }
+
     downloadBtn.addEventListener('click', () => {
+        if (downloadDropdownMenu) downloadDropdownMenu.classList.add('hidden');
         if (!activeTaskId) return;
         window.location.href = `/api/download/${activeTaskId}/?format=bib`;
     });
@@ -707,6 +725,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadCsvBtn = document.getElementById('download-csv-btn');
     if (downloadCsvBtn) {
         downloadCsvBtn.addEventListener('click', () => {
+            if (downloadDropdownMenu) downloadDropdownMenu.classList.add('hidden');
             if (!activeTaskId) return;
             window.location.href = `/api/download/${activeTaskId}/?format=csv`;
         });
@@ -715,6 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadRisBtn = document.getElementById('download-ris-btn');
     if (downloadRisBtn) {
         downloadRisBtn.addEventListener('click', () => {
+            if (downloadDropdownMenu) downloadDropdownMenu.classList.add('hidden');
             if (!activeTaskId) return;
             window.location.href = `/api/download/${activeTaskId}/?format=ris`;
         });

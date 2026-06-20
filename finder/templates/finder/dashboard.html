@@ -255,15 +255,22 @@
                         <button id="new-job-btn" class="secondary-btn">
                             <i class="fa-solid fa-upload"></i> Process Another File
                         </button>
-                        <button id="download-resolved-btn" class="primary-btn glow-effect">
-                            <i class="fa-solid fa-file-invoice"></i> Download BibTeX
-                        </button>
-                        <button id="download-csv-btn" class="primary-btn glow-effect">
-                            <i class="fa-solid fa-file-csv"></i> Download CSV
-                        </button>
-                        <button id="download-ris-btn" class="primary-btn glow-effect">
-                            <i class="fa-solid fa-file-lines"></i> Download RIS
-                        </button>
+                        <div class="dropdown">
+                            <button id="download-dropdown-btn" class="primary-btn glow-effect">
+                                <i class="fa-solid fa-download"></i> Download Resolved <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 0.25rem;"></i>
+                            </button>
+                            <div id="download-dropdown-menu" class="dropdown-menu hidden">
+                                <button id="download-resolved-btn" class="dropdown-item">
+                                    <i class="fa-solid fa-file-invoice" style="color: var(--accent-indigo);"></i> BibTeX (.bib)
+                                </button>
+                                <button id="download-csv-btn" class="dropdown-item">
+                                    <i class="fa-solid fa-file-csv" style="color: var(--accent-teal);"></i> CSV (.csv)
+                                </button>
+                                <button id="download-ris-btn" class="dropdown-item">
+                                    <i class="fa-solid fa-file-lines" style="color: var(--accent-violet);"></i> RIS (.ris)
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

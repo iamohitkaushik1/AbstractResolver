@@ -658,6 +658,66 @@ input:focus, textarea:focus {
     font-size: 0.85rem;
 }
 
+/* Download Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-premium);
+    min-width: 180px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 0.4rem 0;
+    animation: dropdownFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-menu.hidden {
+    display: none !important;
+}
+
+.dropdown-item {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: var(--text-primary) !important;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    width: 100%;
+    text-align: left;
+    transition: var(--transition-smooth);
+    box-shadow: none !important;
+}
+
+.dropdown-item:hover {
+    background: var(--bg-dark);
+    color: var(--accent-indigo) !important;
+    transform: none !important;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
