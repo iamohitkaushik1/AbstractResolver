@@ -1,0 +1,458 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BibTeX Abstract Finder Dashboard</title>
+    <meta name="description" content="Resolve and backfill missing abstracts for your BibTeX library files automatically from OpenAlex, Crossref, CORE, and Semantic Scholar.">
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Dashboard Custom CSS -->
+    <link rel="stylesheet" href="{% static 'finder/css/dashboard.css' %}?v=1.2">
+</head>
+<body>
+    <!-- CSRF Token for JavaScript calls -->
+    {% csrf_token %}
+
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="header-logo">
+                <i class="fa-solid fa-wand-magic-sparkles logo-icon"></i>
+                <div class="logo-text">
+                    <h1>Abstract Finder</h1>
+                    <span class="subtitle">SLR Bibliography Resolver</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="guide-toggle-btn" class="icon-btn secondary-btn-outline" style="margin-right: 0.75rem;" title="User Guide & Privacy">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>User Guide</span>
+                </button>
+                <button id="settings-toggle-btn" class="icon-btn" title="API Credentials & Settings">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Configure APIs</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <main class="app-main">
+            <!-- SETTINGS PANEL (DRAWER) -->
+            <div id="settings-drawer" class="settings-drawer">
+                <div class="drawer-header">
+                    <h3><i class="fa-solid fa-gears"></i> API Settings</h3>
+                    <button id="settings-close-btn" class="close-btn">&times;</button>
+                </div>
+                <div class="drawer-content">
+                    <form id="settings-form">
+                        <div class="form-group">
+                            <label for="input-s2-key">Semantic Scholar API Key</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-key"></i>
+                                <input type="password" id="input-s2-key" name="semantic_scholar_api_key" value="{{ default_config.semantic_scholar_api_key }}" placeholder="Enter API Key">
+                            </div>
+                            <span class="help-text">Optional. Limits apply on unauthenticated rates.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-core-key">CORE API Key</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-key"></i>
+                                <input type="password" id="input-core-key" name="core_api_key" value="{{ default_config.core_api_key }}" placeholder="Enter API Key">
+                            </div>
+                            <span class="help-text">Required for CORE fallback checks.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-crossref-mailto">Crossref Polite User-Agent Email</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="input-crossref-mailto" name="crossref_mailto" value="{{ default_config.crossref_mailto }}" placeholder="email@domain.com">
+                            </div>
+                            <span class="help-text">Used to join the Crossref Polite Pool.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-openalex-mailto">OpenAlex Polite User-Agent Email</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="input-openalex-mailto" name="openalex_mailto" value="{{ default_config.openalex_mailto }}" placeholder="email@domain.com">
+                            </div>
+                            <span class="help-text">Used to join the OpenAlex Polite Pool.</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="input-sleep">Polite Delay (sec)</label>
+                                <input type="number" id="input-sleep" name="sleep_seconds" min="0.1" max="10" step="0.1" value="{{ default_config.sleep_seconds }}">
+                            </div>
+                            <div class="form-group half">
+                                <label for="input-retries">Max Retries</label>
+                                <input type="number" id="input-retries" name="max_retries" min="1" max="10" value="{{ default_config.max_retries }}">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="primary-btn btn-block">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Configurations
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- OVERLAY FOR SETTINGS DRAWER -->
+            <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+
+            <!-- CONFIGURATION SCREEN -->
+            <section id="config-screen" class="dashboard-card upload-container">
+                <div class="upload-art">
+                    <i class="fa-solid fa-gears upload-icon-animation"></i>
+                </div>
+                <h2>Configure API Credentials</h2>
+                <p>To access the academic databases and resolve missing abstracts, please provide your polite pool emails and API keys. You can also view the <a href="#" id="landing-guide-link" class="text-link" style="color: var(--accent-primary); font-weight: 500; text-decoration: underline;">Credentials & Privacy Guide</a> for details.</p>
+                
+                <form id="landing-config-form" class="landing-config-form">
+                    <div class="form-group text-left">
+                        <label for="landing-s2-key">Semantic Scholar API Key <span class="badge-optional">(Optional)</span></label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="password" id="landing-s2-key" name="landing_scholar_key" placeholder="Enter Semantic Scholar API Key">
+                        </div>
+                    </div>
+
+                    <div class="form-group text-left">
+                        <label for="landing-core-key">CORE API Key <span class="badge-required">(Required)</span></label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="password" id="landing-core-key" name="landing_core_key" required placeholder="Enter CORE API Key">
+                        </div>
+                        <span class="help-text">Obtain one free at core.ac.uk/services/api</span>
+                    </div>
+
+                    <div class="form-group text-left">
+                        <label for="landing-crossref-mailto">Crossref Polite Email <span class="badge-required">(Required)</span></label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="landing-crossref-mailto" name="landing_crossref_email" required placeholder="your.email@domain.com">
+                        </div>
+                        <span class="help-text">Required to get prioritized polite pool rate limits.</span>
+                    </div>
+
+                    <div class="form-group text-left">
+                        <label for="landing-openalex-mailto">OpenAlex Polite Email <span class="badge-required">(Required)</span></label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="landing-openalex-mailto" name="landing_openalex_email" required placeholder="your.email@domain.com">
+                        </div>
+                        <span class="help-text">Used to query the OpenAlex polite API pool.</span>
+                    </div>
+
+                    <div class="form-row text-left">
+                        <div class="form-group half">
+                            <label for="landing-sleep">Polite Delay (sec)</label>
+                            <input type="number" id="landing-sleep" name="landing_sleep_seconds" min="0.1" max="10" step="0.1" value="1.0">
+                        </div>
+                        <div class="form-group half">
+                            <label for="landing-retries">Max Retries</label>
+                            <input type="number" id="landing-retries" name="landing_max_retries" min="1" max="10" value="4">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn btn-block glow-effect" style="margin-top: 1.5rem;">
+                        <i class="fa-solid fa-circle-check"></i> Save Credentials & Proceed
+                    </button>
+                </form>
+            </section>
+
+            <!-- UPLOAD SCREEN -->
+            <section id="upload-screen" class="dashboard-card upload-container hidden">
+                <div class="upload-art">
+                    <i class="fa-solid fa-file-circle-plus upload-icon-animation"></i>
+                </div>
+                <h2>Upload Bibliography File</h2>
+                <p>Drag and drop your <strong>.bib</strong>, <strong>.bibtex</strong>, <strong>.csv</strong>, or <strong>.ris</strong> file here, or click browse to resolve and import missing abstracts.</p>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                    <p>Drag files here or <span>Browse Local Files</span></p>
+                    <input type="file" id="file-input" accept=".bib,.bibtex,.csv,.ris" class="hidden-input">
+                </div>
+                
+                <div class="upload-tip">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>BibTeX libraries will be parsed in-memory. Missing abstract fields will be cross-referenced across 4 top repositories.</span>
+                </div>
+            </section>
+
+            <!-- PROGRESS SCREEN -->
+            <section id="progress-screen" class="dashboard-card progress-container hidden">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-spinner fa-spin spinner-accent"></i> Resolving Bibliography Abstracts</h2>
+                    <span id="job-filename" class="tag-filename">file.bib</span>
+                </div>
+                
+                <div class="progress-bar-wrapper">
+                    <div class="progress-info">
+                        <span id="progress-status-text">Processing entries...</span>
+                        <span id="progress-pct-text">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="stats-mini-grid">
+                    <div class="mini-stat-card">
+                        <span class="stat-label">Processed</span>
+                        <span id="stat-processed" class="stat-val">0 / 0</span>
+                    </div>
+                    <div class="mini-stat-card success">
+                        <span class="stat-label">Fetched Successfully</span>
+                        <span id="stat-fetched" class="stat-val">0</span>
+                    </div>
+                    <div class="mini-stat-card info">
+                        <span class="stat-label">Pre-existing</span>
+                        <span id="stat-existing" class="stat-val">0</span>
+                    </div>
+                    <div class="mini-stat-card danger">
+                        <span class="stat-label">Failed / Missing</span>
+                        <span id="stat-failed" class="stat-val">0</span>
+                    </div>
+                </div>
+
+                <div class="console-wrapper">
+                    <div class="console-header">
+                        <span><i class="fa-solid fa-terminal"></i> Fetch Execution Console Logs</span>
+                        <button id="scroll-lock-btn" class="console-action-btn" title="Toggle Auto-Scroll">
+                            <i class="fa-solid fa-anchor"></i> Auto-Scroll
+                        </button>
+                    </div>
+                    <div id="console-log" class="console-log">
+                        <div class="log-line system">[SYSTEM] Starting abstract lookup job pipeline...</div>
+                    </div>
+                </div>
+
+                <div class="action-footer">
+                    <button id="cancel-job-btn" class="danger-btn">
+                        <i class="fa-solid fa-ban"></i> Terminate Task
+                    </button>
+                </div>
+            </section>
+
+            <!-- PREVIEW & DASHBOARD RESULTS SCREEN -->
+            <section id="results-screen" class="dashboard-card results-container hidden">
+                <div class="results-header">
+                    <div class="results-title-group">
+                        <h2><i class="fa-solid fa-square-poll-vertical text-indigo"></i> Bibliography Resolver Analytics</h2>
+                        <span id="resolved-filename" class="tag-filename">file.bib</span>
+                    </div>
+                    <div class="results-actions">
+                        <button id="new-job-btn" class="secondary-btn">
+                            <i class="fa-solid fa-upload"></i> Process Another File
+                        </button>
+                        <button id="download-resolved-btn" class="primary-btn glow-effect">
+                            <i class="fa-solid fa-file-invoice"></i> Download BibTeX
+                        </button>
+                        <button id="download-csv-btn" class="primary-btn glow-effect">
+                            <i class="fa-solid fa-file-csv"></i> Download CSV
+                        </button>
+                        <button id="download-ris-btn" class="primary-btn glow-effect">
+                            <i class="fa-solid fa-file-lines"></i> Download RIS
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STATS DASHBOARD -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper blue">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-num" id="card-total">0</span>
+                            <span class="stat-title">Total Papers</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper green">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-num" id="card-fetched">0</span>
+                            <span class="stat-title">Abstracts Fetched</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper purple">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-num" id="card-existing">0</span>
+                            <span class="stat-title">Pre-existing Abstracts</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper red">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-num" id="card-missing">0</span>
+                            <span class="stat-title">Missing / Unresolved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILTER & PREVIEW TABLE -->
+                <div class="preview-panel">
+                    <div class="filter-bar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="search-input" placeholder="Search by BibID, Title, DOI, Author...">
+                        </div>
+                        <div class="filter-options">
+                            <button class="filter-tab active" data-status="all">All</button>
+                            <button class="filter-tab" data-status="fetched"><span class="badge badge-fetched"></span> Fetched</button>
+                            <button class="filter-tab" data-status="existing"><span class="badge badge-existing"></span> Pre-existing</button>
+                            <button class="filter-tab" data-status="edited"><span class="badge badge-edited"></span> Edited</button>
+                            <button class="filter-tab" data-status="missing"><span class="badge badge-missing"></span> Missing</button>
+                            <button class="filter-tab" data-status="incomplete"><span class="badge badge-incomplete"></span> Incomplete</button>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW TABLE -->
+                    <div class="table-container">
+                        <table id="entries-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%">BibTeX ID</th>
+                                    <th style="width: 50%">Title & Context</th>
+                                    <th style="width: 18%">DOI Reference</th>
+                                    <th style="width: 10%">Status</th>
+                                    <th style="width: 7%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="entries-tbody">
+                                <!-- Dynamic entries go here -->
+                                <tr>
+                                    <td colspan="5" class="table-empty">No entries found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <div class="pagination-footer">
+                        <span class="pagination-info">Showing <span id="pagination-range">0-0</span> of <span id="pagination-total">0</span> papers</span>
+                        <div class="pagination-btns">
+                            <button id="prev-page-btn" class="icon-btn pagination-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                            <span id="current-page-num" class="page-num">1</span>
+                            <button id="next-page-btn" class="icon-btn pagination-btn" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ENTRY DETAIL DRAWER (SLIDE-OUT PANEL) -->
+        <div id="detail-drawer" class="detail-drawer">
+            <div class="drawer-header">
+                <h3><i class="fa-solid fa-circle-info"></i> BibTeX Entry details</h3>
+                <button id="detail-close-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="drawer-content">
+                <div class="entry-meta-item">
+                    <span class="meta-label">BibTeX Key ID</span>
+                    <span id="detail-id" class="meta-val code-block">N/A</span>
+                </div>
+                <div class="entry-meta-item">
+                    <span class="meta-label">Paper Title</span>
+                    <h4 id="detail-title" class="meta-val">N/A</h4>
+                </div>
+                <div class="entry-meta-item">
+                    <span class="meta-label">Authors</span>
+                    <p id="detail-authors" class="meta-val">N/A</p>
+                </div>
+                <div class="entry-meta-row">
+                    <div class="entry-meta-item half">
+                        <span class="meta-label">Journal / Venue</span>
+                        <span id="detail-venue" class="meta-val">N/A</span>
+                    </div>
+                    <div class="entry-meta-item half">
+                        <span class="meta-label">Publication Year</span>
+                        <span id="detail-year" class="meta-val">N/A</span>
+                    </div>
+                </div>
+                <div class="entry-meta-item">
+                    <span class="meta-label">DOI Link</span>
+                    <span id="detail-doi-wrapper" class="meta-val">
+                        <!-- Will hold clickable link -->
+                    </span>
+                </div>
+                
+                <hr class="drawer-divider">
+                
+                <div class="abstract-editor-group">
+                    <div class="editor-header">
+                        <span class="meta-label">Paper Abstract</span>
+                        <span id="detail-status-badge" class="badge">N/A</span>
+                    </div>
+                    <textarea id="detail-abstract-textarea" placeholder="Paste or type abstract text here... If empty, the abstract will be removed from the bibliography file."></textarea>
+                    
+                    <div class="editor-actions">
+                        <span id="edit-save-msg" class="save-msg-feedback hidden"><i class="fa-solid fa-circle-check"></i> Saved successfully</span>
+                        <button id="save-abstract-btn" class="primary-btn">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Abstract Change
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DETAIL DRAWER OVERLAY -->
+        <div id="detail-overlay" class="drawer-overlay hidden"></div>
+        
+        <!-- GUIDE DRAWER (SLIDE-OUT PANEL) -->
+        <div id="guide-drawer" class="settings-drawer">
+            <div class="drawer-header">
+                <h3><i class="fa-solid fa-circle-question"></i> User & Privacy Guide</h3>
+                <button id="guide-close-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="drawer-content guide-content-area" style="padding: 1.5rem; overflow-y: auto; max-height: calc(100vh - 70px); color: var(--text-muted); line-height: 1.6;">
+                <h4 style="color: var(--text-primary); margin-top: 0; font-family: 'Outfit', sans-serif; font-size: 1.1rem;">1. Why are API Credentials Required?</h4>
+                <p style="margin-bottom: 1rem; font-size: 0.92rem;">To search and retrieve paper abstracts at scale without triggering security blocks, academic search engines require user identification. Identifying yourself places your requests in prioritized "polite pools" rather than anonymous shared pools.</p>
+                
+                <h4 style="color: var(--text-primary); margin-top: 1.5rem; font-family: 'Outfit', sans-serif; font-size: 1.1rem;">2. Getting Free API Credentials</h4>
+                <ul style="padding-left: 1.2rem; margin-bottom: 1.5rem; font-size: 0.92rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>OpenAlex & Crossref Polite Emails</strong>: No signup or accounts are required. Just use your valid academic or professional email.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>CORE API Key</strong>: 100% Free. Register at <a href="https://core.ac.uk/services/api" target="_blank" class="text-link" style="color: var(--accent-primary); text-decoration: underline;">core.ac.uk/services/api</a> and generate a key.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Semantic Scholar API Key</strong>: Optional. Leave it blank to use the public unauthenticated search tier.</li>
+                </ul>
+
+                <h4 style="color: var(--text-primary); margin-top: 1.5rem; font-family: 'Outfit', sans-serif; font-size: 1.1rem;">3. Privacy & Security Guarantee</h4>
+                <div class="upload-tip" style="background: rgba(34, 197, 94, 0.08); border-left: 4px solid var(--accent-success); border-radius: 4px; padding: 1rem; margin-bottom: 1.5rem; color: var(--text-primary); font-size: 0.92rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--accent-success); font-size: 1.1rem;"></i>
+                    <span><strong>Your data remains completely private.</strong></span>
+                </div>
+                <ul style="padding-left: 1.2rem; font-size: 0.92rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Local Storage</strong>: Keys and email settings are saved strictly inside your local browser's <code>localStorage</code> database. They never leave your computer.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>In-Memory Processing</strong>: Uploaded files are resolved in-memory on your local machine and never written to permanent remote disks.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>No Third-Party Sharing</strong>: No telemetry, analytic tracking, or data sharing occurs. Queries are sent directly to the official academic APIs.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <footer class="app-footer">
+            <p>&copy; 2026 Abstract Finder. Developed Collaboratively with Antigravity by Mohit Kaushik.</p>
+        </footer>
+    </div>
+
+    <!-- Application Dashboard Logic -->
+    <script src="{% static 'finder/js/dashboard.js' %}?v=1.2"></script>
+</body>
+</html>
