@@ -93,7 +93,7 @@ The app functions fully out-of-the-box using the public polite pools of OpenAlex
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing & Sample Files
 
 The codebase includes comprehensive unit tests validating RIS parsing/serialization, LaTeX title normalization, parallel resolving mechanisms, and API proxy logic. 
 
@@ -101,6 +101,14 @@ To run the automated test suite:
 ```bash
 python manage.py test
 ```
+
+### 📁 Sample Input Files
+Inside the [test/](file:///f:/Abstract%20Finder/test) folder, we have included three pre-configured sample files representing each supported input format:
+1. **`OSS_ERA2_Pilot.csv`**: A Publish or Perish formatted CSV dataset containing metadata and partial citation fields.
+2. **`OSS_ERA2_Pilot.ris`**: A Research Information Systems (RIS) bibliographic dataset.
+3. **`pop_results.bibtex`**: A BibTeX citation reference library.
+
+These sample files are provided to help users understand the input requirements and easily get familiar with the tool's abstract resolution pipeline. You can upload any of these files directly via the dashboard homepage to test the tool out-of-the-box.
 
 ---
 
@@ -116,6 +124,7 @@ Abstract Finder/
 │   ├── task_manager.py   # Multi-threaded background queue processor
 │   ├── tests.py          # Django automated unit tests
 │   └── views.py          # Endpoint controllers (upload, download, proxy)
+├── test/                 # Sample input files (.bib, .ris, .csv) for testing
 ├── requirements.txt      # Project requirements list
 ├── start.bat             # Auto-setup and launcher utility
 ├── fetching_abstract.py  # Standalone Colab/CLI script

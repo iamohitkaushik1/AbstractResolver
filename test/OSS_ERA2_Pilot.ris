@@ -1,0 +1,299 @@
+﻿TY  - JOUR
+AU  - Low, JF
+AU  - Yathog, T
+AU  - Svetinovic, D
+TI  - Software analytics study of Open-Source system survivability through social contagion
+JF  - 2015 IEEE International …
+PB  - ieeexplore.ieee.org
+UR  - https://ieeexplore.ieee.org/abstract/document/7385840/
+PY  - 2015///
+AB  - … To address that knowledge gap, we have analyzed data from GitHub, an open source code … patterns involved in an open source software project’s continued survival. We queried the …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 9 cites: https://scholar.google.com/scholar?cites=482578837204572941&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2015): 9
+ER  - 
+
+TY  - JOUR
+AU  - Chua, BB
+TI  - Detecting sustainable programming languages through forking on open source projects for survivability
+JF  - 2015 IEEE International Symposium on Software …
+PB  - ieeexplore.ieee.org
+UR  - https://ieeexplore.ieee.org/abstract/document/7392056/
+PY  - 2015///
+AB  - … forN patterns on programming languages influence duration of open source project survival. … According to our result, in Github, it is the opposite. Though the majority of Github …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 6 cites: https://scholar.google.com/scholar?cites=11560169382656519968&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2015): 6
+ER  - 
+
+TY  - JOUR
+AU  - Yamashita, K
+AU  - McIntosh, S
+AU  - Kamei, Y
+AU  - Hassan, AE
+AU  - ...
+TI  - Revisiting the applicability of the pareto principle to core development teams in open source software projects
+JF  - Proceedings of the 14th …
+PB  - dl.acm.org
+DO  - 10.1145/2804360.2804366
+UR  - https://dl.acm.org/doi/abs/10.1145/2804360.2804366
+UR  - https://dl.acm.org/doi/pdf/10.1145/2804360.2804366
+PY  - 2015///
+AB  - … the studied GitHub projects are susceptible to the “bus factor,… We study GitHub projects because GitHub is one of the most … on GitHub (eg, Rails1). Through analysis of the 2,496 …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 112 cites: https://scholar.google.com/scholar?cites=14918184809184187837&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2015): 112
+ER  - 
+
+TY  - CITATION
+AU  - Cummings, DJ
+TI  - Survivability as a tool for evaluating open source software
+PB  - Monterey, California: Naval …
+UR  - https://upload.wikimedia.org/wikipedia/commons/a/ab/Survivability_as_a_tool_for_evaluating_open_source_software_%28IA_survivabilitysto1094545833%29.pdf
+PY  - 2015///
+M1  - Query date: 2026-06-20 09:56:07
+ER  - 
+
+TY  - JOUR
+AU  - Sacks, M
+TI  - Competition between open source and proprietary software: Strategies for survival
+JF  - Journal of Management Information Systems
+PB  - Taylor &Francis
+DO  - 10.1080/07421222.2015.1099391
+UR  - https://www.tandfonline.com/doi/abs/10.1080/07421222.2015.1099391
+UR  - https://www.tandfonline.com/doi/pdf/10.1080/07421222.2015.1099391
+PY  - 2015///
+AB  - … open source software will survive and how producers of proprietary software differentiate themselves from open source … software and a community producing open source software. If the …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 36 cites: https://scholar.google.com/scholar?cites=1444081588866854766&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2015): 36
+ER  - 
+
+TY  - BOOK
+AU  - Purkayastha, S
+TI  - OpenScrum: Scrum methodology to improve shared understanding in an open-source community
+PB  - scholarworks.indianapolis.iu.edu
+UR  - https://scholarworks.indianapolis.iu.edu/items/cf3fa227-e7dd-4a07-9bdb-d90ec4ceb59a
+UR  - https://scholarworks.indianapolis.iu.edu/bitstreams/a39adc65-1e80-41fb-b270-0b8fe393e58b/download
+PY  - 2014///
+AB  - … We have moved to github and forks are inevitable, but at least easy to track”. … Instead increasing busfactor through knowledge sharing, increasing community participation and …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 2 cites: https://scholar.google.com/scholar?cites=5179814865256046618&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2014): 2
+ER  - 
+
+TY  - JOUR
+AU  - Jarczyk, O
+AU  - Gruszka, B
+AU  - Jaroszewicz, S
+AU  - ...
+TI  - Github projects. quality analysis of open-source software
+JF  - … Conference on Social …
+PB  - Springer
+DO  - 10.1007/978-3-319-13734-6_6
+UR  - https://link.springer.com/chapter/10.1007/978-3-319-13734-6_6
+UR  - https://www.academia.edu/download/86332863/github_projects_quality_analysis_of_oss.pdf
+PY  - 2014///
+AB  - … The analysis of survival of those issues gives us insights about typical life duration of issues … of GitHub projects. We believe that issue survival is one of the indicators of GitHub team …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 134 cites: https://scholar.google.com/scholar?cites=15554599895767631409&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2014): 134
+ER  - 
+
+TY  - HTML
+AU  - Jansen, S
+TI  - Measuring the health of open source software ecosystems: Beyond the scope of project health
+JF  - Information and Software Technology
+PB  - Elsevier
+UR  - https://www.sciencedirect.com/science/article/pii/S0950584914000871
+UR  - https://www.sciencedirect.com/science/article/pii/S0950584914000871
+PY  - 2014///
+AB  - … The livelihood of an open source ecosystem is important to different ecosystem participants: … be used to determine the health of open source ecosystems. Health is typically looked at …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 233 cites: https://scholar.google.com/scholar?cites=53982229050638971&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2014): 233
+ER  - 
+
+TY  - HTML
+AU  - Scheufele, E
+AU  - Aronzon, D
+AU  - Coopersmith, R
+AU  - ...
+TI  - tranSMART: an open source knowledge management and high content data analytics platform
+JF  - AMIA Summits on …
+PB  - pmc.ncbi.nlm.nih.gov
+UR  - https://pmc.ncbi.nlm.nih.gov/articles/PMC4333702/
+UR  - https://pmc.ncbi.nlm.nih.gov/articles/PMC4333702/
+PY  - 2014///
+AB  - … open source community and include: box plot with ANOVA, scatter plot with linear regression, table with Fisher test, survival … The open source community is demonstrating excitement …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 103 cites: https://scholar.google.com/scholar?cites=11223398026653327583&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2014): 103
+ER  - 
+
+TY  - HTML
+AU  - Finak, G
+AU  - Frelinger, J
+AU  - Jiang, W
+AU  - Newell, EW
+AU  - ...
+TI  - OpenCyto: an open source infrastructure for scalable, robust, reproducible, and automated, end-to-end flow cytometry data analysis
+JF  - PLoS computational …
+PB  - journals.plos.org
+UR  - https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003806
+UR  - https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003806
+PY  - 2014///
+AB  - Flow cytometry is used increasingly in clinical research for cancer, immunology and vaccines. Technological advances in cytometry instrumentation are increasing the size and …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 240 cites: https://scholar.google.com/scholar?cites=9533471206490319978&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2014): 240
+ER  - 
+
+TY  - BOOK
+AU  - Syed, SAS
+TI  - A Z-score for Open Source Projects
+PB  - studenttheses.uu.nl
+UR  - https://studenttheses.uu.nl/handle/20.500.12932/13789
+UR  - https://studenttheses.uu.nl/bitstream/handle/20.500.12932/13789/thesis-zscore.pdf?sequence=2&isAllowed=y
+PY  - 2013///
+AB  - … Forges such as SourceForge.net2 and Github.… Open Source Software in commercial companies, heavily depending on the survival of their software systems, the need to assess Open …
+M1  - Query date: 2026-06-20 09:56:07
+ER  - 
+
+TY  - JOUR
+AU  - Khondhu, J
+AU  - Capiluppi, A
+AU  - Stol, KJ
+TI  - Is it all lost? A study of inactive open source projects
+JF  - … international conference on open source …
+PB  - Springer
+DO  - 10.1007/978-3-642-38928-3_5
+UR  - https://link.springer.com/chapter/10.1007/978-3-642-38928-3_5
+UR  - https://researchrepository.ul.ie/bitstreams/1b977b52-10c2-4989-83af-0ddadb7670b2/download
+PY  - 2013///
+AB  - … This paper studies the abandonment of OSS projects without inferring their lack of activity with measures. It studies the abandoned projects by spidering a specific HTML tag (ie, <…
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 69 cites: https://scholar.google.com/scholar?cites=13936060836829129914&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 69
+ER  - 
+
+TY  - PDF
+AU  - Nyman, L
+AU  - Lindman, J
+TI  - Code forking, governance, and sustainability in open source software
+JF  - Technology Innovation Management Review
+PB  - timreview.ca
+UR  - https://timreview.ca/sites/default/files/article_PDF/NymanLindman_TIMReview_January2013.pdf
+UR  - https://timreview.ca/sites/default/files/article_PDF/NymanLindman_TIMReview_January2013.pdf
+PY  - 2013///
+AB  - … ; see also GitHub: tinyurl.com/7uc94sk). The right to fork code is built into the very definition of … Soon after Nokia’s abandonment of the MeeGo project in 2011 (press release: tinyurl.com/…
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 126 cites: https://scholar.google.com/scholar?cites=10893115855512800735&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 126
+ER  - 
+
+TY  - BOOK
+AU  - Zaytsev, I
+TI  - Evaluating the Health of Open Source Components
+PB  - studenttheses.uu.nl
+UR  - https://studenttheses.uu.nl/handle/20.500.12932/13237
+UR  - https://studenttheses.uu.nl/bitstream/handle/20.500.12932/13237/Ivan%20Zaytsev%20-%20Evaluating%20the%20Health%20of%20Open%20Source%20Components.pdf?sequence=1
+PY  - 2013///
+AB  - … source, this research systematically analyzes the vitality of open source communities and … Additional findings indicate that for every new committer added to a project, its survival …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 1 cites: https://scholar.google.com/scholar?cites=17668411026627228212&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 1
+ER  - 
+
+TY  - HTML
+AU  - Schweik, CM
+AU  - English, R
+TI  - Preliminary steps toward a general theory of internet-based collective-action in digital information commons: Findings from a study of open source software …
+JF  - International Journal of the …
+PB  - thecommonsjournal.org
+UR  - https://www.thecommonsjournal.org/articles/397
+UR  - https://www.thecommonsjournal.org/articles/397
+PY  - 2013///
+AB  - … looking at factors leading to collaborative success or abandonment in one form of online digital information commons called free/libre and open source software or FOSS, a difficult task …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 31 cites: https://scholar.google.com/scholar?cites=16808213834949085334&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 31
+ER  - 
+
+TY  - JOUR
+AU  - McDonald, N
+AU  - Goggins, S
+TI  - Performance and participation in open source software on github
+JF  - CHI'13 extended abstracts on human factors in …
+PB  - dl.acm.org
+DO  - 10.1145/2468356.2468382
+UR  - https://dl.acm.org/doi/abs/10.1145/2468356.2468382
+UR  - https://dl.acm.org/doi/pdf/10.1145/2468356.2468382
+PY  - 2013///
+AB  - … GitHub, a code hosting repository based on the Git version … virtual software organizations that use GitHub will shed light on … 10 lead and core developers on three open source projects. …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 150 cites: https://scholar.google.com/scholar?cites=9010272097129471300&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 150
+ER  - 
+
+TY  - JOUR
+AU  - Guzzi, A
+AU  - Bacchelli, A
+AU  - Lanza, M
+AU  - ...
+TI  - Communication in open source software development mailing lists
+JF  - 2013 10th Working …
+PB  - ieeexplore.ieee.org
+UR  - https://ieeexplore.ieee.org/abstract/document/6624039/
+UR  - https://www.aau.at/wp-content/uploads/2019/11/Guzzi2013-communication.pdf
+PY  - 2013///
+AB  - … taking place in open source development mailing lists that … of interest to new social platforms (eg, GitHub and Jira), or a very … ingredient in the long-term survival of OSS projects [10], and …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 199 cites: https://scholar.google.com/scholar?cites=2810837243684334623&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 199
+ER  - 
+
+TY  - BOOK
+AU  - Murray, JW
+TI  - A data envelopment analysis and task completion analysis of open source software project performance in sourceforge. net
+PB  - search.proquest.com
+UR  - https://search.proquest.com/openview/e82ab04dd51c633a1b8d70d7e15f957c/1?pq-origsite=gscholar&cbl=18750
+PY  - 2013///
+AB  - … performance of all active open source software projects hosted … effort, the study evaluated open source software projects on … comprehensive perspective of open source software projects …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 1 cites: https://scholar.google.com/scholar?cites=4223119092235356970&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 1
+ER  - 
+
+TY  - BOOK
+AU  - Pearce, JM
+TI  - Open-source lab: how to build your own hardware and reduce research costs
+PB  - books.google.com
+UR  - https://books.google.com/books?hl=en&lr=&id=0bOKAAAAQBAJ&oi=fnd&pg=PP1&dq=open+source+%22project+health%22%7C%22survival%22%7C%22abandonment%22%7C%22bus+factor%22+%22github%22&ots=uhDJh9TAy_&sig=YZP0VX1klsZfqx29z8iAYdWma9g
+PY  - 2013///
+AB  - … the scientific and engineering literature, as well as Github, Thingiverse, and Appropedia users. A … The idea that the evolutionary theory of survival of the fittest can be transferred to social …
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 458 cites: https://scholar.google.com/scholar?cites=2419391234745305559&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2013): 458
+ER  - 
+
+TY  - JOUR
+AU  - Rohde, H
+AU  - Qin, J
+AU  - Cui, Y
+AU  - Li, D
+AU  - Loman, NJ
+AU  - ...
+TI  - Open-Source Genomic Analysis of Shiga-Toxin–Producing E. coli O104:H4
+JF  - … England Journal of …
+PB  - Mass Medical Soc
+DO  - 10.1056/NEJMoa1107643
+UR  - https://www.nejm.org/doi/abs/10.1056/NEJMoa1107643
+UR  - https://www.nejm.org/doi/full/10.1056/NEJMoa1107643
+PY  - 2011///
+AB  - … an open-source genomic analysis of an isolate from one member of the family. This analysis involved the use of rapid, bench-top DNA sequencing technology, open-source data release…
+M1  - Query date: 2026-06-20 09:56:07
+M1  - 558 cites: https://scholar.google.com/scholar?cites=1437052908649410386&as_sdt=2005&sciodt=0,5&hl=en
+N1  - Cited By (since 2011): 558
+ER  - 
+
