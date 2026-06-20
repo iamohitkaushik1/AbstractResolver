@@ -8,7 +8,7 @@ echo.
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo [ERROR] Python is not installed or not in your PATH.
-    echo Please install Python (version 3.8 or higher recommended) and check "Add Python to PATH".
+    echo Please install Python version 3.8 or higher and check Add Python to PATH.
     echo.
     pause
     exit /b 1
